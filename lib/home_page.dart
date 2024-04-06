@@ -49,13 +49,14 @@ class _HomePageState extends State<HomePage> {
   Map<String, dynamic>? forecastMap;
 
   getWeatherData() async {
+    // Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit
     var weather = await http.get(
       Uri.parse(
-          "https://api.openweathermap.org/data/2.5/weather?lat=${position!.latitude}&lon=${position!.longitude}&appid=42bbdcdea226d8b602f1516251c04d45&units=metric"),
+          "https://api.openweathermap.org/data/2.5/weather?lat=${position!.latitude}&lon=${position!.longitude}&appid=42bbdcdea226d8b602f1516251c04d45&units=metric"),  // Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit
     );
     var forecast = await http.get(
       Uri.parse(
-          "https://api.openweathermap.org/data/2.5/forecast?lat=${position!.latitude}&lon=${position!.longitude}&appid=42bbdcdea226d8b602f1516251c04d45&units=metric"),
+          "https://api.openweathermap.org/data/2.5/forecast?lat=${position!.latitude}&lon=${position!.longitude}&appid=42bbdcdea226d8b602f1516251c04d45&units=metric"),   // Unit Default: Kelvin, Metric: Celsius, Imperial: Fahrenheit
     );
     // print("Weather Data: ${weather.body}");
     // print("Weather Data: ${forecast.body}");
