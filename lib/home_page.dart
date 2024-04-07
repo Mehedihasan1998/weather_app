@@ -106,6 +106,9 @@ class _HomePageState extends State<HomePage> {
                       Text(
                         "${Jiffy.parse("${DateTime.now()}").format(pattern: 'MMM do yyyy')}", style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
+                      Text(
+                        "${Jiffy.parse("${DateTime.now()}").format(pattern: 'EEEE')}", style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
                     ],
                   ),
                   Image.network(
@@ -114,7 +117,7 @@ class _HomePageState extends State<HomePage> {
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
-                  Text("${weatherMap!['weather'][0]['main']}", style: TextStyle(fontSize: 20, color: Colors.white),),
+
                   Column(
                     children: [
 
@@ -152,20 +155,20 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                  Column(
-                    children: [
-                      Text("Feels Like: ${weatherMap!['main']['feels_like']}°C"),
-
-                      Text("${weatherMap!['weather'][0]['description']}"),
-                      Text(
-                          "Pressure: ${weatherMap!['main']['pressure']} hPa"),
-                      Text(
-                          "Sunrise: ${Jiffy.parse("${DateTime.fromMillisecondsSinceEpoch(weatherMap!['sys']['sunrise'] * 1000)}").format(pattern: "hh:mm a")}  ||  Sunset: ${Jiffy.parse("${DateTime.fromMillisecondsSinceEpoch(weatherMap!['sys']['sunset'] * 1000)}").format(pattern: "hh:mm a")}"),
-
-                    ],
-                  ),
+                  // Column(
+                  //   children: [
+                  //     Text("Feels Like: ${weatherMap!['main']['feels_like']}°C"),
+                  //
+                  //     Text("${weatherMap!['weather'][0]['description']}"),
+                  //     Text(
+                  //         "Pressure: ${weatherMap!['main']['pressure']} hPa"),
+                  //     Text(
+                  //         "Sunrise: ${Jiffy.parse("${DateTime.fromMillisecondsSinceEpoch(weatherMap!['sys']['sunrise'] * 1000)}").format(pattern: "hh:mm a")}  ||  Sunset: ${Jiffy.parse("${DateTime.fromMillisecondsSinceEpoch(weatherMap!['sys']['sunset'] * 1000)}").format(pattern: "hh:mm a")}"),
+                  //
+                  //   ],
+                  // ),
                   SizedBox(
-                    height: 250,
+                    height: 80,
                     child: ListView.builder(
                       itemCount: forecastMap!.length,
                       shrinkWrap: true,
@@ -178,20 +181,29 @@ class _HomePageState extends State<HomePage> {
                           ),
                           width: 150,
                           margin: EdgeInsets.only(right: 12),
-                          padding: EdgeInsets.all(8),
+                          padding: EdgeInsets.all(10),
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
+                              // Text(
+                              //   "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "EEE")}",
+                              //   style: TextStyle(fontSize: 16),
+                              // ),
                               Text(
-                                  "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "EEE h:mm a")}"),
-                              Image.network(
-                                  "https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png"),
+                                  "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "h:mm a")}",
+                                style: TextStyle(fontSize: 16),
+                              ),
+                              // Image.network(
+                              //     "https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png"),
+
+                              // Text(
+                              //     "Min Temp: ${forecastMap!["list"][index]['main']["temp_min"]}°C"),
+                              //
                               Text(
-                                  "Min Temp: ${forecastMap!["list"][index]['main']["temp_min"]}°C"),
-                              Text(
-                                  "Max Temp: ${forecastMap!["list"][index]['main']["temp_max"]}°C"),
-                              Text(
-                                  "${forecastMap!["list"][index]['weather'][0]["description"]}"),
+                                  "${forecastMap!["list"][index]['main']["temp_max"]}°C", style: TextStyle(fontSize: 25),),
+
+                              // Text(
+                              //     "${forecastMap!["list"][index]['weather'][0]["description"]}"),
                             ],
                           ),
                         );
