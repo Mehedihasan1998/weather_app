@@ -9,6 +9,7 @@ class SettingsPage extends StatelessWidget {
         child: Scaffold(
       body: Container(
         decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage("assets/images/rain.jpg"), fit: BoxFit.fill),
           gradient: LinearGradient(
             colors: [
               Colors.blueGrey,

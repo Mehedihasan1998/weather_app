@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:weather_app/Search.dart';
+import 'package:weather_app/search.dart';
 import 'package:weather_app/home_page.dart';
 import 'package:weather_app/settings.dart';
 class HomeStructure extends StatefulWidget {
@@ -26,7 +26,9 @@ class _HomeStructureState extends State<HomeStructure> {
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: _currentIndex,
             // backgroundColor: Color(0xff512DA8),
-            backgroundColor: Color(0xff1565c0),
+            // backgroundColor: Color(0xff1565c0),
+            backgroundColor: Colors.blueGrey,
+
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.white60,

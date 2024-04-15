@@ -84,6 +84,8 @@ class _HomePageState extends State<HomePage> {
         padding: EdgeInsets.all(20),
         width: double.infinity,
         decoration: BoxDecoration(
+          image: DecorationImage(
+              image: AssetImage("assets/images/rain.jpg"), fit: BoxFit.fill),
           gradient: LinearGradient(
             colors: [
               Colors.blueGrey,
@@ -97,59 +99,120 @@ class _HomePageState extends State<HomePage> {
         child: weatherMap != null
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Text("${weatherMap!['name']}", style: TextStyle(fontSize: 25, color: Colors.white),),
                       Text(
-                        "${Jiffy.parse("${DateTime.now()}").format(pattern: 'MMM do yyyy')}", style: TextStyle(fontSize: 18, color: Colors.white),
+                        "${weatherMap!['name']}",
+                        style: TextStyle(fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
                       ),
                       Text(
-                        "${Jiffy.parse("${DateTime.now()}").format(pattern: 'EEEE')}", style: TextStyle(fontSize: 18, color: Colors.white),
+                        "${Jiffy.parse("${DateTime.now()}").format(pattern: 'MMM do yyyy')}",
+                        style: TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                      Text(
+                        "${Jiffy.parse("${DateTime.now()}").format(pattern: 'EEEE')}",
+                        style: TextStyle(fontSize: 18, color: Colors.white),
                       ),
                     ],
                   ),
-                  Image.network(
-                    "https://openweathermap.org/img/wn/${weatherMap!['weather'][0]['icon']}@2x.png",
-                    height: 150,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
+                  Column(
+                    children: [
+                      Container(
+                        padding: EdgeInsets.all(10),
+                        height: 160,
+                        decoration: BoxDecoration(
+                            color: Colors.white70,
+                            // borderRadius: BorderRadius.circular(10),
+                            shape: BoxShape.circle),
+                        child: Column(
+                          children: [
+                            Image.network(
+                              "https://openweathermap.org/img/wn/${weatherMap!['weather'][0]['icon']}@2x.png",
+                              width: double.infinity,
+                              height: 110,
+                              fit: BoxFit.contain,
+                            ),
+                            Text(
+                              "${weatherMap!['weather'][0]['description']}"
+                                  .toUpperCase(),
+                              style: TextStyle(
+                                  fontSize: 18, fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
 
                   Column(
                     children: [
-
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Column(
-                            children: [
-                              Text("Temp", style: TextStyle(fontSize: 17, color: Colors.white),),
-                              Text(
-                                "${weatherMap!['main']['temp']}°C",
-                                style: TextStyle(fontSize: 25, color: Colors.white),
-                              ),
-                            ],
+                          Container(
+                            width: 115,
+                            decoration: BoxDecoration(
+                                color: Colors.white30,
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Column(
+                              children: [
+                                const Text(
+                                  "Temp",
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "${weatherMap!['main']['temp']}°C",
+                                  style: TextStyle(
+                                      fontSize: 25, color: Colors.white,),
+                                ),
+                              ],
+                            ),
                           ),
-                          Column(
-                            children: [
-                              Text("Wind", style: TextStyle(fontSize: 17, color: Colors.white),),
-                              Text(
-                                "${weatherMap!['wind']['speed']}m/s",
-                                style: TextStyle(fontSize: 25, color: Colors.white),
-                              ),
-                            ],
+                          Container(
+                            width: 115,
+                            decoration: BoxDecoration(
+                                color: Colors.white30,
+                                borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Column(
+                              children: [
+                                const Text(
+                                  "Wind",
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "${weatherMap!['wind']['speed']}m/s",
+                                  style: TextStyle(
+                                      fontSize: 25, color: Colors.white),
+                                ),
+                              ],
+                            ),
                           ),
-                          Column(
-                            children: [
-                              Text("Humidity", style: TextStyle(fontSize: 17, color: Colors.white),),
-                              Text(
-                                "${weatherMap!['main']['humidity']}%",
-                                style: TextStyle(fontSize: 25, color: Colors.white),
-                              ),
-                            ],
+                          Container(
+                            width: 115,
+                            decoration: BoxDecoration(
+                              color: Colors.white30,
+                              borderRadius: BorderRadius.circular(10)
+                            ),
+                            child: Column(
+                              children: [
+                                const Text(
+                                  "Humidity",
+                                  style: TextStyle(
+                                      fontSize: 18, color: Colors.white, fontWeight: FontWeight.bold),
+                                ),
+                                Text(
+                                  "${weatherMap!['main']['humidity']}%",
+                                  style: TextStyle(
+                                      fontSize: 25, color: Colors.white),
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
@@ -179,31 +242,42 @@ class _HomePageState extends State<HomePage> {
                             color: Colors.white54,
                             borderRadius: BorderRadius.circular(20),
                           ),
-                          width: 150,
+                          width: 200,
                           margin: EdgeInsets.only(right: 12),
                           padding: EdgeInsets.all(10),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          child: Row(
                             children: [
-                              // Text(
-                              //   "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "EEE")}",
-                              //   style: TextStyle(fontSize: 16),
-                              // ),
-                              Text(
-                                  "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "h:mm a")}",
-                                style: TextStyle(fontSize: 16),
+                              Image.network(
+                                width: 80,
+                                "https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png",
+                                fit: BoxFit.contain,
                               ),
-                              // Image.network(
-                              //     "https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png"),
+                              Column(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  // Text(
+                                  //   "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "EEE")}",
+                                  //   style: TextStyle(fontSize: 16),
+                                  // ),
+                                  Text(
+                                    "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "h:mm a")}",
+                                    style: TextStyle(fontSize: 16),
+                                  ),
+                                  // Image.network(
+                                  //     "https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png"),
 
-                              // Text(
-                              //     "Min Temp: ${forecastMap!["list"][index]['main']["temp_min"]}°C"),
-                              //
-                              Text(
-                                  "${forecastMap!["list"][index]['main']["temp_max"]}°C", style: TextStyle(fontSize: 25),),
+                                  // Text(
+                                  //     "Min Temp: ${forecastMap!["list"][index]['main']["temp_min"]}°C"),
+                                  //
+                                  Text(
+                                    "${forecastMap!["list"][index]['main']["temp_max"]}°C",
+                                    style: TextStyle(fontSize: 25),
+                                  ),
 
-                              // Text(
-                              //     "${forecastMap!["list"][index]['weather'][0]["description"]}"),
+                                  // Text(
+                                  //     "${forecastMap!["list"][index]['weather'][0]["description"]}"),
+                                ],
+                              ),
                             ],
                           ),
                         );
