@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -81,16 +80,15 @@ class _HomePageState extends State<HomePage> {
     return SafeArea(
       child: Scaffold(
           body: Container(
-        padding: EdgeInsets.all(20),
+        padding: EdgeInsets.all(10),
         width: double.infinity,
         decoration: BoxDecoration(
           image: DecorationImage(
-              image: AssetImage("assets/images/rain.jpg"), fit: BoxFit.fill),
+              image: AssetImage("assets/images/sunset.jpg"), fit: BoxFit.fill),
           gradient: LinearGradient(
             colors: [
               Colors.blueGrey,
-              // Colors.blueAccent,
-              Colors.blue
+              Colors.blue,
             ],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -100,6 +98,7 @@ class _HomePageState extends State<HomePage> {
             ? Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  /// Country Name, Date, Time
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -117,6 +116,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
+
+                  /// Image
                   Column(
                     children: [
                       Container(
@@ -146,6 +147,7 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
 
+                  /// Temp, Wind, Humidity
                   Column(
                     children: [
                       Row(
@@ -218,76 +220,103 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ],
                   ),
-                  // Column(
-                  //   children: [
-                  //     Text("Feels Like: ${weatherMap!['main']['feels_like']}°C"),
-                  //
-                  //     Text("${weatherMap!['weather'][0]['description']}"),
-                  //     Text(
-                  //         "Pressure: ${weatherMap!['main']['pressure']} hPa"),
-                  //     Text(
-                  //         "Sunrise: ${Jiffy.parse("${DateTime.fromMillisecondsSinceEpoch(weatherMap!['sys']['sunrise'] * 1000)}").format(pattern: "hh:mm a")}  ||  Sunset: ${Jiffy.parse("${DateTime.fromMillisecondsSinceEpoch(weatherMap!['sys']['sunset'] * 1000)}").format(pattern: "hh:mm a")}"),
-                  //
-                  //   ],
-                  // ),
-                  SizedBox(
-                    height: 80,
-                    child: ListView.builder(
-                      itemCount: forecastMap!.length,
-                      shrinkWrap: true,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white54,
-                            borderRadius: BorderRadius.circular(20),
-                          ),
-                          width: 200,
-                          margin: EdgeInsets.only(right: 12),
-                          padding: EdgeInsets.all(10),
-                          child: Row(
-                            children: [
-                              Image.network(
-                                width: 80,
-                                "https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png",
-                                fit: BoxFit.contain,
+
+                  /// Forecast builder
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      const Text("Today", style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.bold),),
+                      SizedBox(height: 10,),
+                      SizedBox(
+                        height: 80,
+                        child: ListView.builder(
+                          itemCount: forecastMap!.length,
+                          shrinkWrap: true,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Container(
+                              decoration: BoxDecoration(
+                                color: Colors.white54,
+                                borderRadius: BorderRadius.circular(20),
                               ),
-                              Column(
-                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              width: 200,
+                              margin: EdgeInsets.only(right: 12),
+                              padding: EdgeInsets.all(10),
+                              child: Row(
                                 children: [
-                                  // Text(
-                                  //   "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "EEE")}",
-                                  //   style: TextStyle(fontSize: 16),
-                                  // ),
-                                  Text(
-                                    "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "h:mm a")}",
-                                    style: TextStyle(fontSize: 16),
+                                  Image.network(
+                                    width: 80,
+                                    "https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png",
+                                    fit: BoxFit.contain,
                                   ),
-                                  // Image.network(
-                                  //     "https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png"),
+                                  Column(
+                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      // Text(
+                                      //   "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "EEE")}",
+                                      //   style: TextStyle(fontSize: 16),
+                                      // ),
+                                      Text(
+                                        "${Jiffy.parse("${forecastMap!['list'][index]['dt_txt']}").format(pattern: "h:mm a")}",
+                                        style: TextStyle(fontSize: 16),
+                                      ),
+                                      // Image.network(
+                                      //     "https://openweathermap.org/img/wn/${forecastMap!['list'][index]['weather'][0]['icon']}@2x.png"),
 
-                                  // Text(
-                                  //     "Min Temp: ${forecastMap!["list"][index]['main']["temp_min"]}°C"),
-                                  //
-                                  Text(
-                                    "${forecastMap!["list"][index]['main']["temp_max"]}°C",
-                                    style: TextStyle(fontSize: 25),
+                                      // Text(
+                                      //     "Min Temp: ${forecastMap!["list"][index]['main']["temp_min"]}°C"),
+                                      //
+                                      Text(
+                                        "${forecastMap!["list"][index]['main']["temp_max"]}°C",
+                                        style: TextStyle(fontSize: 25),
+                                      ),
+
+                                      // Text(
+                                      //     "${forecastMap!["list"][index]['weather'][0]["description"]}"),
+                                    ],
                                   ),
-
-                                  // Text(
-                                  //     "${forecastMap!["list"][index]['weather'][0]["description"]}"),
                                 ],
                               ),
-                            ],
-                          ),
-                        );
-                      },
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+
+                  /// Feels like, Sunrise, Sunset
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        color: Colors.white30,
+                        borderRadius: BorderRadius.circular(10)
+                    ),
+                    child: Column(
+                      children: [
+                        Text("Feels Like: ${weatherMap!['main']['feels_like']}°C", style: TextStyle(color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),),
+                        // Text("${weatherMap!['weather'][0]['description']}"),
+                        // Text(
+                        //     "Pressure: ${weatherMap!['main']['pressure']} hPa"),
+                        Text(
+                            "Sunrise: ${Jiffy.parse("${DateTime.fromMillisecondsSinceEpoch(weatherMap!['sys']['sunrise'] * 1000)}").format(pattern: "hh:mm a")}  ||  Sunset: ${Jiffy.parse("${DateTime.fromMillisecondsSinceEpoch(weatherMap!['sys']['sunset'] * 1000)}").format(pattern: "hh:mm a")}",
+                          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+
+                      ],
                     ),
                   ),
+
                 ],
               )
             : Center(
-                child: CircularProgressIndicator(),
+                child: Container(
+                  padding: EdgeInsets.all(25),
+                  height: 70,
+                    width: 70,
+                    decoration: BoxDecoration(
+                      color: Colors.white.withOpacity(0.7),
+                    ),
+                    child: CircularProgressIndicator(strokeWidth: 3, color: Colors.blue,),),
               ),
       )),
     );

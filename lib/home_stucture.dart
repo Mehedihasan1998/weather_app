@@ -25,18 +25,15 @@ class _HomeStructureState extends State<HomeStructure> {
           body: tabs[_currentIndex],
           bottomNavigationBar: BottomNavigationBar(
             currentIndex: _currentIndex,
-            // backgroundColor: Color(0xff512DA8),
-            // backgroundColor: Color(0xff1565c0),
-            backgroundColor: Colors.blueGrey,
-
+            backgroundColor: Color(0xff264653),
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Colors.white,
             unselectedItemColor: Colors.white60,
             showSelectedLabels: false,
             showUnselectedLabels: false,
             selectedFontSize: 15,
-            selectedIconTheme: IconThemeData(size: 30),
-            iconSize: 22,
+            selectedIconTheme: IconThemeData(size: 25),
+            iconSize: 20,
             elevation: 5,
             // showUnselectedLabels: false,
             items: [
@@ -50,7 +47,7 @@ class _HomeStructureState extends State<HomeStructure> {
               ),
               BottomNavigationBarItem(
                 label: "Settings",
-                icon: Icon(Icons.settings),
+                icon: Icon(Icons.filter_list),
               ),
             ],
             onTap: (index){
