@@ -1,16 +1,12 @@
 # weather_app
 
-A new Flutter project.
+- Current weather
+- Check weather of a city
+- Weather forecast
 
-## Getting Started
+## Overview
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![home](https://github.com/Mehedihasan1998/weather_app/assets/56060082/79f5f19b-722e-43a6-8ee7-c4b3f6241867)
+![search](https://github.com/Mehedihasan1998/weather_app/assets/56060082/a059771b-5069-4415-905f-a3d5bf5dbcc6)
+![forecast](https://github.com/Mehedihasan1998/weather_app/assets/56060082/c86210e8-b6ea-4a68-807f-ab928d8b5802)
